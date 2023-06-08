@@ -45,12 +45,13 @@ db.Cursos.insertOne({
     "cod_curso": "SI400", "nom_curso": "Diseño de base de datos", "creditos": "CUATRO"
 })
 
+
 //Eliminar todos los documentos de una colección
 db.Cursos.deleteMany({});
 
-for (let i = 0; i < 50; i++){
+for (let i = 0; i < 50; i++) {
     db.Cursos.insertOne({
-        "cod_curso": "SI400", "nom_curso": "Diseño de base de datos "+i.toString(), "creditos": i
+        "cod_curso": "SI400", "nom_curso": "Diseño de base de datos " + i.toString(), "creditos": i
     })
 }
 
@@ -72,16 +73,21 @@ db.runCommand({
                 },
                 nom_curso: {
                     bsonType: "string",
-                    maxLength:50,
+                    maxLength: 50,
                     description: "el campo 'nom_curso' debe ser un string",
                 },
                 creditos: {
                     bsonType: "number",
-                    minLength: 1,
-                    maxLength:8,
+                    minimum: 1,
+                    maximum: 8,
                     description: "el campo 'creditos' debe ser un entero",
                 }
             }
         }
     }
+})
+
+//Ingresar curso con diez créditos
+db.Cursos.insertOne({
+    "cod_curso": "SI400", "nom_curso": "Diseño de base de datos", "creditos": 9
 })
